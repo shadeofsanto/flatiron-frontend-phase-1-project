@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 1 Project:Guess the Movie</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="main.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, inital-scale=1.0">
+  <title>Project Phase 1: Guess the Movie</title>
+  <script defer src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-   <h1>test</h1> 
+  <div id="filmstrip-header"></div>
+  <h1 id="game-title">Guess the Movie</h1>
+  <div id="game-container">
+    <div id="image-container">
+      <img id="movie-image" src="" alt="Movie Image">
+    </div>
+    <p id="quote"></p>
+    <input type="text" id="guess-input" placeholder="Enter your guess">
+    <button id="submit-button">Submit</button>
+    <p id="result"></p>
+    <button id="hint-button">Quote Hint</button>
+    <p id="hint-text"></p>
+    <button id="next-button">Next Movie</button>
+  </div>
+  <div id="filmstrip-footer"></div>
 </body>
 </html>

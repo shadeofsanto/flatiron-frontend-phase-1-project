@@ -2,7 +2,7 @@
     "movieData": [
         {
             "id": 1,
-            "name": "Guns Akimbo",
+            "namemovie": "Guns Akimbo",
             "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjkzOGQ4NzUtZGZlNy00Nzg0LWEyNGUtMzQ2YjAxZWNmOGVjXkEyXkFqcGdeQXVyNzI1NzMxNzM@._V1_.jpg",
             "hintQuote": "Miles : Behind the keyboard I'm the ultimate troll hunter. I know I should just let it go, but I just couldn't resist. Yeah, get angry at me. Let's do this.",
             "director": "Jason Howden"
@@ -37,7 +37,7 @@
         },
         {
             "id": 6,
-            "name": "Forrst Gump",
+            "name": "Forrest Gump",
             "imageUrl": "https://www.usatoday.com/gcdn/presto/2019/07/02/USAT/cc5b2491-053a-408e-93a9-f28377918c65-XXX_FORREST-GUMP-MOV-jy-1933-.JPG",
             "hintQuote": "Forrest Gump: My momma always said, 'Life was like a box of chocolates. You never know what you're gonna get.'",
             "directorHint": "Robert Zemeckis"
