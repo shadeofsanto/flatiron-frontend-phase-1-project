@@ -66,13 +66,13 @@ h1 {
   display: none;
 }
 
-#answer-key {
+/* #answer-key {
   width: 250px;
   height: 400px;
   margin: 0 auto;
   overflow: hidden;
   float: left;
-}
+} */
 
 #next-button {
   background-color: gold;
