@@ -39,12 +39,6 @@ h1 {
   font-style: italic;
 }
 
-.answer-option {
-  list-style-type: none;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
 #guess-input {
   margin-top: 10px;
   padding: 5px;
@@ -65,7 +59,7 @@ h1 {
   padding: 5px 10px;
 }
 
-#next-button {
+#hint-text {
   margin-top: 10px;
-  padding: 5px 10px;
+  display: none;
 }
