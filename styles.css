@@ -1,81 +1,41 @@
 body {
-  background-color: #000;
-  color: gold;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
+    background-color: #000;
+    color: gold;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: gold;
+  }
+  
+  #filmstrip-header,
+  #filmstrip-footer {
+    height: 150px;
+    background-repeat: repeat-x;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
+  }
+  
+  #game-container {
+    margin-top: 20px;
+    background-color: #000;
+  }
+  
+  #image-container {
+    width: 550px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #222;
+    overflow: hidden;
+  }
+  
+  #movie-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
 
-h1 {
-  color: gold;
-}
+  #body-css {
+    background-color: #000;
+  }
 
-#filmstrip-header,
-#filmstrip-footer {
-  height: 150px;
-  background-repeat: repeat-x;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
-}
-
-#game-container {
-  margin-top: 20px;
-}
-
-#image-container {
-  width: 500px;
-  height: 400px;
-  margin: 0 auto;
-  background-color: #222;
-  overflow: hidden;
-}
-
-#movie-image {
-  display: none;
-  width: 100%;
-  height: 100%;
-}
-
-#quote {
-  margin-top: 10px;
-  font-style: italic;
-}
-
-#guess-input {
-  margin-top: 10px;
-  padding: 5px;
-}
-
-#submit-button {
-  background-color: gold;
-  margin-top: 10px;
-  padding: 5px 10px;
-}
-
-#result {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-#hint-button {
-  background-color: gold;
-  margin-top: 10px;
-  padding: 5px 10px;
-}
-
-#hint-text {
-  margin-top: 10px;
-  display: none;
-}
-
-/* #answer-key {
-  width: 250px;
-  height: 400px;
-  margin: 0 auto;
-  overflow: hidden;
-  float: left;
-} */
-
-#next-button {
-  background-color: gold;
-  margin-top: 10px;
-  padding: 5px 10px;
-}

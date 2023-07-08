@@ -1,74 +1,135 @@
 {
-    "movieData": [
+ "movieData":[
         {
-            "id": 1,
-            "namemovie": "Guns Akimbo",
+            "id": "1",
+            "name": "Guns Akimbo",
             "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjkzOGQ4NzUtZGZlNy00Nzg0LWEyNGUtMzQ2YjAxZWNmOGVjXkEyXkFqcGdeQXVyNzI1NzMxNzM@._V1_.jpg",
             "hintQuote": "Miles : Behind the keyboard I'm the ultimate troll hunter. I know I should just let it go, but I just couldn't resist. Yeah, get angry at me. Let's do this.",
-            "director": "Jason Howden"
+            "directorHint": "Jason Howden",
+            "answerPool" : [
+                "Guns Akimbo"
+            ]
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "Harry Potter",
             "imageUrl": "https://www.scienceabc.com/wp-content/uploads/2016/03/Harry-potter.jpg",
             "hintQuote": "Hagrid: You're a wizard, Harry!",
-            "directorHint": "Chris Columbus"
+            "directorHint": "Chris Columbus",
+            "answerPool" : [
+                "Harry Potter",
+                "Harry Potter and the Sorcerer's Stone",
+                "Sorcerer's Stone",
+                "The Sorcerer's Stone"
+            ]
         },
         {
-            "id": 3,
+            "id": "3",
             "name": "The Avengers",
             "imageUrl": "https://cdn.vox-cdn.com/thumbor/Cp2J_Ofyb_T3GO0IJiMGBx40fd0=/0x55:3805x2047/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23184567/avengers_battle_of_new_york.jpg",
-            "hintQuote": "[Hulk flattens Loki with repeated smashes into the floor] The Hulk: Puny god.",
-            "directorHint": "Joss Whedon"
+            "hintQuote": "[Hulk repeated smashes loki into the floor] The Hulk: Puny god.",
+            "directorHint": "Joss Whedon",
+            "answerPool" : [
+                "The Avengers",
+                "Avengers"
+                ]
         },
         {
-            "id": 4,
+            "id": "4",
             "name": "Raiders of the Lost Ark",
             "imageUrl": "https://static.onecms.io/wp-content/uploads/sites/6/2012/10/raidersoflostark-indiana_0.jpg",
             "hintQuote": "Indiana: Marion, don't look at it. Shut your eyes, Marion. Don't look at it, no matter what happens!",
-            "directorHint": "Steven Spielberg"
+            "directorHint": "Steven Spielberg",
+            "answerPool" : [
+                "Raiders of the Lost Ark",
+                "Indiana Jones"
+            ]
         },
         {
-            "id": 5,
+            "id": "5",
             "name": "300",
             "imageUrl": "https://www.thedigitalfix.com/wp-content/uploads/2022/03/300-movie-true-story-gerard-butler-this-is-sparta.jpg",
             "hintQuote": "King Leonidas: This is Sparta!",
-            "directorHint": "Zack Snyder"
+            "directorHint": "Zack Snyder",
+            "answerPool" : [
+                "300"
+            ]
         },
         {
-            "id": 6,
+            "id": "6",
             "name": "Forrest Gump",
             "imageUrl": "https://www.usatoday.com/gcdn/presto/2019/07/02/USAT/cc5b2491-053a-408e-93a9-f28377918c65-XXX_FORREST-GUMP-MOV-jy-1933-.JPG",
             "hintQuote": "Forrest Gump: My momma always said, 'Life was like a box of chocolates. You never know what you're gonna get.'",
-            "directorHint": "Robert Zemeckis"
+            "directorHint": "Robert Zemeckis",
+            "answerPool" : [
+                "Forrest Gump"
+            ]
         },
         {
-            "id": 7,
+            "id": "7",
             "name": "The Matrix",
             "imageUrl": "https://i.guim.co.uk/img/media/26073cebb66ac01be4146ad69c71615fb92a1471/360_156_2614_1569/master/2614.jpg?width=620&quality=85&auto=format&fit=max&s=8af9343e8349f4df7d5af61e35f68cb2",
             "hintQuote": "Neo: What are you trying to tell me? That I can dodge bullets?",
-            "directorHint": "Lana and Lilly Wachowski"
+            "directorHint": "Lana and Lilly Wachowski",
+            "answerPool" : [
+                "The Matrix",
+                "Matrix"
+            ]
         },
         {
-            "id": 8,
+            "id": "8",
             "name": "Braveheart",
             "imageUrl": "https://i.guim.co.uk/img/media/70aa0a91da42abbc35c6b6f7e4874b5ec6c14cd1/0_3_1804_1082/master/1804.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=1f1e174cf500f75c105124c3ddf56a66",
             "hintQuote": "William Wallace: Every man dies, not every man really lives.",
-            "directorHint": "Mel Gibson"
+            "directorHint": "Mel Gibson",
+            "answerPool" : [
+                "Braveheart"
+            ]
         },
         {
-            "id": 9,
+            "id": "9",
             "name": "Gladiator",
             "imageUrl": "https://media.npr.org/assets/img/2015/11/25/gettyimages-156473199_custom-60c5ab37668dfcb743f85117f0117e28abdd7041-s1100-c50.jpg",
             "hintQuote": "Maximus: Are you not entertained? Are you not entertained? Is this not why you are here?",
-            "directorHint": "Ridley Scott"
+            "directorHint": "Ridley Scott",
+            "answerPool" : [
+                "Gladiator"
+            ]
         },
         {
-            "id": 10,
+            "id": "10",
             "name": "The Dark Knight",
             "imageUrl": "https://i.cbc.ca/1.2248090.1382678608!/httpImage/image.jpg_gen/derivatives/original_780/arts-joker-584.jpg",
             "hintQuote": "The Joker: Why so serious?",
-            "directorHint": "Christopher Nolan"
+            "directorHint": "Christopher Nolan",
+            "answerPool" : [
+                "The Dark Knight",
+                "Batman",
+                "Batman The Dark Knight"
+            ]
+        },
+        {
+            "id": "11",
+            "name": "Willy Wonka",
+            "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/85/Gene_Wilder_as_Willy_Wonka.jpeg",
+            "hintQuote": "Mr. Wonka: No other factory in the world mixes its chocolate by waterfall… But it's the only way if you want it just right",
+            "directorHint": "Mel Stuart",
+            "answerPool" : [
+                "Willy Wonka",
+                "Willy Wonka and the Chocolate Factory"
+            ]
+        },
+        {
+            "id": "12",
+            "name": "Men in Black",
+            "imageUrl": "https://amblin.com/wp-content/uploads/2018/06/mib_1997_photo_1920x1080-8_hero.jpg",
+            "hintQuote": "Kay: A person is smart.  People are dumb, panicky dangerous animals and you know it.",
+            "directorHint": "Barry Sonnenfeld",
+            "answerPool":[
+                "Men in Black",
+                "MIB"
+            ]
         }
     ]
 }
+     
