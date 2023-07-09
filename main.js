@@ -28,7 +28,26 @@ fetch('http://localhost:3000/movieData')
     console.error('Error fetching movie data:', error);
   });
 
-  //here we are going to get the data for our movie
+  function setUp(){
+     //debug data line go here
+     console.log("load at setup()");
+     //END debug
+
+    //making certain things visbile or hidden
+    dirHint.style.visibility = "visible"
+    ansrKey.style.visibility = "visible"
+    setUP.style.visibility = "hidden"
+    gameCon.style.visibility = "visible"
+    movImg.style.visibility = "visible"
+    hitTxt.style.visibility = "visible"
+    Rslts.style.visibility = "hidden"
+    gameField.style.visibility = "visible"
+    btnField.style.visibility = "visible"
+
+    loadMovie();
+  }
+
+  //here we are going to get the data for the movie
   function loadMovie (){
     movImg.style.display = "visible";
     //debug data line(s) go here
@@ -39,7 +58,7 @@ fetch('http://localhost:3000/movieData')
 
     movieData.forEach(crntMov => {
       if(crntMov.id == rdmNum){
-        movieId = crntMov.id -1;
+        movieId = crntMov.id -1;//had to add -1 in there because i started IDs at 1 instead of 0...
         console.log("rdm num is ${rdmNum}.  Picked ${crntMov.name} as base line.");
       }
  console.log(`I am on ${crntMov.name} Movie!`);
