@@ -1,0 +1,22 @@
+body {
+  background-color: #000;
+  color: gold;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: gold;
+}
+
+#filmstrip-header,
+#filmstrip-footer {
+  height: 150px;
+  background-repeat: repeat-x;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
+}
+
+#game-container {
+  margin-top: 20px;
+  background-color: #000;
+}
