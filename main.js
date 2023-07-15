@@ -3,6 +3,8 @@ let movieData = [];
 let rdmNum;
 let movieId;
 let dbug = true; //Default on(true) or off(false) for debug option
+let Endgame = 0;
+let points = 0;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -14,11 +16,14 @@ const hitTxt = document.getElementById("hint-text");
 const Rslts = document.getElementById("result");
 const gameField = document.getElementById("GameFeild");
 const btnField = document.getElementById("BtnFeild");
+const closePopUp = document.getElementById("popUpClose")
+const overlay = document.getElementById("overlay")
+const popUp = document.getElementById("popUp")
+const popUpContent = document.getElementById("popUpContent")
+
 
 //!!!DEBUG!!! data line(s) go here
-if (dbug){
   console.log(`At fetch db` + '\n' + " ");
-}
 //END debug
 
 // Fetch movie data from db.json
@@ -36,24 +41,67 @@ fetch('http://localhost:3000/movieData')
 
   function HowManyTime(){
     //debug
-    if (dbug){
       console.log('At howmanytimes()')
-    }
     //end debug
 
     //making the setup area visible and hiding the game area
     gameField.style.visibility = "hidden";
     setUP.style.visibility = "visible";
+
+
   
     //set up how many rounds a player wants to play
     setUP.innerHTML = `
     <h1>How many rounds do you wanna play?</h1>
     <br>
     <p>Min is 1 and max is ${movieData.length}!</p>
-    <input type="text" id="amount-of-rounds" placeholder="1 - ${movieData.lenght}">
+    <input type="text" id="amount-of-rounds" placeholder="1 - ${movieData.length}">
     <button id="roundbtn" class="btn" onclick="checkRoundNum()">Enter</button>
     `
   }
+
+  function checkRoundNum(){
+    if(dbug){
+      console.log(`at checkroundnum()`)
+    }
+
+    Endgame = document.getElementById("amount-of-rounds").value;
+
+    if (isNaN(Endgame)){
+      overlay.style.display='block'
+      popUp.style.display='block'
+      closePopUp.style.display='hidden'
+      popUpContent.innerHTML = `
+      <h1>${Endgame} is not a number.</h1>
+      <p>Please enter a number 1 - ${movieData.length}</p>
+      <br>
+      <button id="roundbtn" class="btn" onclick="location.reload()">Retry</button>
+      `
+      return;
+    }
+    else if(Endgame < 1 || Endgame > movieData.length) {
+      overlay.style.display='block'
+      popUp.style.display='block'
+      closePopUp.style.display='hidden'
+      popUpContent.innerHTML = `
+      <h1>${Endgame} is not a a valid number.</h1>
+      <p>Please enter a number 1 - ${movieData.length}</p>
+      <br>
+      <button id="roundbtn" class="btn" onclick="location.reload()">Retry</button>
+      `
+      return;
+    }
+    else {
+      Choice();
+    }
+  }
+
+  function Choice(){
+    if(dbug){
+      console.log(`at choice()`)
+    }
+  }
+
   function SetUp (){
     //Debug
     if (dbug){
@@ -135,5 +183,10 @@ if(keyCode == "/" || keyCode == "/"){
     }
   }
 });
+
+closePopUp.onclick= function(){
+  overlay.style.display = `none`;
+  popUp.style.display = `none`;
+}
 
 console.log(`!!!dbug is ${dbug} by default!!!`);
