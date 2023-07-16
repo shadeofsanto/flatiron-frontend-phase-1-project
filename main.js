@@ -5,6 +5,7 @@ let movieId;
 let dbug = true; //Default on(true) or off(false) for debug option
 let Endgame = 0;
 let points = 0;
+let popUpMsg = "";
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -68,27 +69,24 @@ fetch('http://localhost:3000/movieData')
     Endgame = document.getElementById("amount-of-rounds").value;
 
     if (isNaN(Endgame)){
-      overlay.style.display='block'
-      popUp.style.display='block'
-      closePopUp.style.display='hidden'
-      popUpContent.innerHTML = `
+      popUpMsg = `
       <h1>${Endgame} is not a number.</h1>
       <p>Please enter a number 1 - ${movieData.length}</p>
       <br>
-      <button id="roundbtn" class="btn" onclick="location.reload()">Retry</button>
+      <button id="roundbtn" class="btn" onclick="ClosePopUp(), HowManyTime()">Retry</button>
       `
+      OpenPopUp(false)
       return;
-    }
+    } 
+
     else if(Endgame < 1 || Endgame > movieData.length) {
-      overlay.style.display='block'
-      popUp.style.display='block'
-      closePopUp.style.display='hidden'
-      popUpContent.innerHTML = `
-      <h1>${Endgame} is not a a valid number.</h1>
+      popUpMsg = `
+      <h1>${Endgame} is not a valid number.</h1>
       <p>Please enter a number 1 - ${movieData.length}</p>
       <br>
-      <button id="roundbtn" class="btn" onclick="location.reload()">Retry</button>
+      <button id="roundbtn" class="btn" onclick="ClosePopUp(), HowManyTime()">Retry</button>
       `
+      OpenPopUp(false)
       return;
     }
     else {
@@ -187,6 +185,21 @@ if(keyCode == "/" || keyCode == "/"){
 closePopUp.onclick= function(){
   overlay.style.display = `none`;
   popUp.style.display = `none`;
+}
+
+function OpenPopUp(xPopUp){
+  overlay.style.display= `block`
+  if (xPopUp){
+    closePopUp.style.visibility=`visible`;
+  }
+  else {
+    closePopUp.style.visibility=`hidden`;
+  }
+  popUpContent.innerHTML=popUpMsg;
+}
+
+function ClosePopUp(){
+  overlay.style.display = `none`;
 }
 
 console.log(`!!!dbug is ${dbug} by default!!!`);
