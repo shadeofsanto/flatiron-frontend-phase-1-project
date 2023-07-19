@@ -5,7 +5,11 @@ let movieId;
 let dbug = true; //Default on(true) or off(false) for debug option
 let Endgame = 0;
 let points = 0;
-let popUpMsg = "";
+let popupmesg = "";
+let choiceGame;
+let lvl = 1;
+let hint;
+let hintR;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -17,14 +21,13 @@ const hitTxt = document.getElementById("hint-text");
 const Rslts = document.getElementById("result");
 const gameField = document.getElementById("GameFeild");
 const btnField = document.getElementById("BtnFeild");
-const closePopUp = document.getElementById("popUpClose")
-const overlay = document.getElementById("overlay")
-const popUp = document.getElementById("popUp")
-const popUpContent = document.getElementById("popUpContent")
-
+const closePopup = document.getElementById("popUpClose");
+const overlay = document.getElementById("overlay");
+const popUP = document.getElementById("popup");
+const popupContent = document.getElementById("popupcontent");
 
 //!!!DEBUG!!! data line(s) go here
-  console.log(`At fetch db` + '\n' + " ");
+  console.log(`-----At fetch db-----` + '\n' + " ");
 //END debug
 
 // Fetch movie data from db.json
@@ -41,76 +44,124 @@ fetch('http://localhost:3000/movieData')
   });
 
   function HowManyTime(){
-    //debug
-      console.log('At howmanytimes()')
-    //end debug
+    //!!!!DEBUG!!!!
+        console.log(`-----At HowManyTime()-----` + '\n' + " ");
+      //END DEBUG
 
-    //making the setup area visible and hiding the game area
-    gameField.style.visibility = "hidden";
-    setUP.style.visibility = "visible";
+      //Making the setup areia visible while hiding the game area
+      gameCon.style.visibility = "hidden";
+      setUP.style.visibility = "visible";
 
-
-  
-    //set up how many rounds a player wants to play
-    setUP.innerHTML = `
-    <h1>How many rounds do you wanna play?</h1>
-    <br>
-    <p>Min is 1 and max is ${movieData.length}!</p>
-    <input type="text" id="amount-of-rounds" placeholder="1 - ${movieData.length}">
-    <button id="roundbtn" class="btn" onclick="checkRoundNum()">Enter</button>
-    `
+      //creating an input feild with button so players can input how many rounds they want to play
+      setUP.innerHTML = `
+      <h1>How many rounds do you wana play?</h1> 
+      <br>
+      <p>Min is 1 and max is ${movieData.length}!</p>
+      <input type="text" id="amount-of-rounds" placeholder="1 - ${movieData.length}">
+      <button id="roundbtn" class = "btn" onclick = "checkRoundNum()">Enter</button>
+      `
   }
 
-  function checkRoundNum(){
-    if(dbug){
-      console.log(`at checkroundnum()`)
+  function checkRoundNum() {
+    //!!!!DEBUG!!!!
+    if (dbug){
+    console.log(`-----At checkRoundNum()-----` + '\n' + 
+    `I saw that input "amount-of-rounds" is sending ${document.getElementById("amount-of-rounds").value}`);
     }
+    //END DEBUG
 
     Endgame = document.getElementById("amount-of-rounds").value;
 
-    if (isNaN(Endgame)){
-      popUpMsg = `
-      <h1>${Endgame} is not a number.</h1>
-      <p>Please enter a number 1 - ${movieData.length}</p>
+    if (isNaN(Endgame)) {
+      popupmesg = `
+      <h1>${Endgame} is <i>NOT</i> a number!</h1> 
+      <p>Please enter a number 1 to ${movieData.length}</p>
       <br>
-      <button id="roundbtn" class="btn" onclick="ClosePopUp(), HowManyTime()">Retry</button>
+      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>
       `
-      OpenPopUp(false)
-      return;
-    } 
-
-    else if(Endgame < 1 || Endgame > movieData.length) {
-      popUpMsg = `
-      <h1>${Endgame} is not a valid number.</h1>
-      <p>Please enter a number 1 - ${movieData.length}</p>
-      <br>
-      <button id="roundbtn" class="btn" onclick="ClosePopUp(), HowManyTime()">Retry</button>
-      `
-      OpenPopUp(false)
+      OpenPopup(false)
       return;
     }
+
+    else if (Endgame<1 || Endgame>movieData.length) {
+      popupmesg = `
+      <h1>${Endgame} is <i>NOT</i> a valid number!</h1>
+      <p>Please enter a number 1 to ${movieData.length}</p>
+      <br>
+      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>
+      `
+      OpenPopup(false)
+      return;
+    }
+
     else {
       Choice();
     }
+
+  }
+1
+  function Choice(){
+    //!!!!DEBUG!!!!
+    if (dbug){
+      console.log(`-----At Choice()-----` + '\n' + " ");
+    }
+    //END DEBUG
+
+    points = 100/Endgame;
+
+    if (dbug){
+      console.log(`Questions are worth ${points} each.  There will be ${Endgame} question(s).`);
+    }
+
+    setUP.innerHTML = `
+    <p>Questions are worth ${Math.round(points)} each.  There will be ${Endgame} question(s).</p>
+    <h1>Choose your Style</h1>
+    <select id="game-play" multiple>
+    <option value = true selected>Multiple Choice</option>
+    <option value = false>Type it in</option>
+    </select>
+    <br>
+    <button id="roundbtn" class="btn" onclick="Diff()">Next</button>
+    `
+    //END DEBUG
+
   }
 
-  function Choice(){
-    if(dbug){
-      console.log(`at choice()`)
+  function Diff() {
+    //!!!!DEBUG!!!!
+    if (dbug){
+      console.log(`-----At Diff()-----` + '\n' + " ");
     }
+    //END DEBUG
+
+    choice = document.getElementById("game-play").value
+
+    setUP.innerHTML = `
+    <h1>Choose your Difficulty</h1>
+    <select id="game-play" multiple>
+    <option value=1 selected>Easy</option>
+    <option value=2>Medium</option>
+    <option value=3>Hard</option>
+    </select>
+    <br>
+    <button id="roundbtn" class="btn" onclick="SetUp()">Next</button>
+    `
+
   }
 
   function SetUp (){
-    //Debug
+    //!!!DEBUG!!! data line(s) go here
     if (dbug){
-      console.log(`At SetUp()` + '\n' + " ");
+      console.log(`-----At SetUp()-----` + '\n' + " ");
     }
     //END debug
+
+    lvl = document.getElementById("game-play").value
 
     //Just making things visible or not.
     dirHint.style.visibility = "visible";
     ansrKey.style.visibility = "visible";
-    setUP.style.visibility = "hidden";
+    setUP.style.display = "none";
     gameCon.style.visibility = "visible";
     movImg.style.visibility = "visible";
     hitTxt.style.visibility = "visible";
@@ -118,7 +169,69 @@ fetch('http://localhost:3000/movieData')
     gameField.style.visibility = "visible";
     btnField.style.visibility = "visible";
 
-    loadMovie();
+    switch(choiceGame) {
+      case choiceGame:
+        btnField.innerHTML=`
+        <button id="hint-button" onclick = "showHint()">Quote Hint</button>
+        <button id="next-button" onclick = "nextMovie()"style="visibility:hidden;">Next Movie</button> 
+        `;
+      break;
+
+      case !choiceGame:
+        gameField.innerHTML=`
+        <input type="text" id="guess-input" placeholder="Enter Your Guess">
+        button id="submit-button onclick="submitAnswer()">Submit</button>
+        `;
+        btnSub = document.getElementById(`submit-button`);
+        btnField.innerHTML= `
+        <button id="hint-button" onclick="showHint()">Quote Hint</button>
+        <button id="next-button" onclick="nextMovie()" style="visibility:hidden;">Next Movie"</button>
+        `
+        btnNext=document.getElementById(`next-button`);
+      break;
+    
+      default:
+        popupmesg=`
+        <h1>Something has gone wrong!</h1>
+        <br>
+        <buttton class="btn" onclick="location.reload()">Refresh</button>
+        `
+        OpenPopup(false);
+      break;
+
+    }
+
+    switch (lvl){
+
+      case "1":
+        hint=false;
+        hintR=true;
+        loadMovie()
+      break;
+
+      case "2":
+        hint=true;
+        hintR=false;
+        loadMovie()
+      break;
+
+      case "3":
+        hint=false;
+        hintR=false;
+        loadMovie()
+
+      break;
+
+      default:
+        popupmesg=`
+        <h1>Something has gone wrong!</h1>
+        <br>
+        <button onclick="location.reload()">Refresh</button>
+        `
+        OpenPopup(false);
+      break;
+
+    }
   }
 
   //here we are going to get the data for our movie
@@ -182,24 +295,27 @@ if(keyCode == "/" || keyCode == "/"){
   }
 });
 
-closePopUp.onclick= function(){
-  overlay.style.display = `none`;
-  popUp.style.display = `none`;
+closePopup.onclick = function() {
+  overlay.style.display = 'none';
+  popUP.style.display = 'none';
 }
 
-function OpenPopUp(xPopUp){
-  overlay.style.display= `block`
-  if (xPopUp){
-    closePopUp.style.visibility=`visible`;
+function OpenPopup (xpopup){
+  overlay.style.display = 'block';
+  if (xpopup){
+    closePopup.style.visibility = "visible";
   }
   else {
-    closePopUp.style.visibility=`hidden`;
+    closePopup.style.visibility = "hidden";
   }
-  popUpContent.innerHTML=popUpMsg;
+
+  popupContent.innerHTML = popupmesg;
+
 }
 
-function ClosePopUp(){
-  overlay.style.display = `none`;
+function ClosePopup (){
+  overlay.style.display = 'none';
+
 }
 
 console.log(`!!!dbug is ${dbug} by default!!!`);

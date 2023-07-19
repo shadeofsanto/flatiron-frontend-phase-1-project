@@ -3,56 +3,181 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background: #585555;
+  background: #2e2b2b;
   width: 100%;
   height: 100%;
-  opacity: 0.97;
+  opacity: .97;
   z-index: 100;
 }
 
-#popUp {
+#popup {
   position: absolute;
   top: 50%;
   left: 50%;
-  background: #080808;
+  background: #000000;
   width: 200px;
   height: 350px;
-  margin-left: -100px; /*half the value of the width to center*/
-  margin-top: -100px; /*hald the value of t he height to center*/
+  margin-left: -100px; /*Half the val of width to center div*/
+  margin-top: -100px; /*Half the val of height to center div*/
   z-index: 200;
 }
 
-#popUpClose {
+#popupclose {
   float: right;
   padding: 10px;
   cursor: pointer;
 }
 
-.popUpContent {
+.popupcontent {
   padding: 10px;
 }
 
+#game-play{
+  height: 44px;
+  border: none;
+  overflow: hidden;
+  background-color: #000;
+}
+#game-play::-moz-focus-inner {
+  border: 0;
+}
+#game-play:focus {
+  outline: none;
+}
+#game-play option{
+  width: 150px;
+  font-size: 1.2em;
+  padding: 10px 0;
+  text-align: center;
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+  border:rgb(204, 204, 0) solid 1px;
+  border-radius: 5px;
+  background:gold;
+}
 
+#body-css{
+  background-color: #000;
+}
 
 body {
-  background-color: #000;
-  color: gold;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
+    background-color: #000;
+    color: gold;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: gold;
+  }
+  
+  #filmstrip-header,
+  #filmstrip-footer {
+    height: 150px;
+    background-repeat: repeat-x;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
+  }
+  
+  #game-container {
+    margin-top: 20px;
+  }
 
-h1 {
-  color: gold;
-}
+  .btn {
+    background-color: gold;
+    border: none;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 5px;
+  }
+  
+  #image-container {
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #222;
+    overflow: hidden;
+  }
+  
+  #movie-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  #quote {
+    margin-top: 10px;
+    font-style: italic;
+  }
+  
+  #guess-input {
+    margin-top: 10px;
+    padding: 5px;
+  }
 
-#filmstrip-header,
-#filmstrip-footer {
-  height: 150px;
-  background-repeat: repeat-x;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
-}
-
-#game-container {
-  margin-top: 20px;
-  background-color: #000;
-}
+  .btnGuess{
+    background-color: #037e0e;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 20px;
+  }
+  
+  #submit-button {
+    background-color: #037e0e;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 20px;
+  }
+  
+  #result {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  #hint-button {
+    background-color: gold;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 20px;
+  }
+  
+  #hint-text {
+    margin-top: 10px;
+    font-style: italic;
+  }
+  
+  #next-button {
+    background-color: gold;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 20px;
+  }
