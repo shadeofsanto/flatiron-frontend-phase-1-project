@@ -16,11 +16,11 @@ let movieNum=[];
 let getRight=0;
 let getWrong=0;
 let score=0;
-let choice;
 let rdmA;
 let crntMovie=[];
 let rdmB;
 let btnNext;
+let guessInput;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -164,8 +164,6 @@ fetch('http://localhost:3000/movieData')
 
     lvl = document.getElementById("gamePlay").value
 
-    // choiceGame = confirm(`Are you ready?`)
-
     //Just making things visible or not.
     dirHint.style.visibility = "visible";
     ansrKey.style.visibility = "visible";
@@ -190,6 +188,7 @@ fetch('http://localhost:3000/movieData')
         <input type="text" id="guessInput" placeholder="Enter Your Guess">
         <button id="submit-button" class="btn" onclick="submitAnswer()">Submit</button>`;
         btnSub = document.getElementById(`submit-button`);
+        guessInput = document.getElementById(`guessInput`)
         btnField.innerHTML= `
         <button id="hintButton" onclick="showHint()">Quote Hint</button>
         <button id="nextButton" onclick="nextMovie()" style="visibility:hidden;">Next Movie"</button>`
@@ -238,6 +237,20 @@ fetch('http://localhost:3000/movieData')
 
     }
   }
+
+  function repeatCheck(){
+    //check repeat
+    if (dbug){
+      console.log(`At repeatcheck()`);
+    }
+    //END repeat
+    for (i=0; i<movieNum.length; i++){
+      if (movieNum[i] == crntMovie.id){
+        return true;
+      }
+  }
+  return false;
+}
 
   //This retrieves the data for the movie
   function loadMovie (){
@@ -298,7 +311,7 @@ fetch('http://localhost:3000/movieData')
       btnHint.style.visibility="hidden";
     }
     else{
-      btnHint.style.visibility="visable";
+      btnHint.style.visibility="visible";
     }
 
     if(!hintR){
@@ -317,12 +330,12 @@ fetch('http://localhost:3000/movieData')
     hitTxt.innerText=movieData[rdmNum].hintQuote;
 
     ansrKey.style.display="block";
-
-    if(choice = "true"){
+    
+    if(choiceGame == "true"){
+      console.log("testblhjf'ggn ")
       subEnter=false;
       fillinTheBlanks();
     }
-    //event listener to make the enter key continue the game...mostly because I found myself hitting enter to try to continue the game and was getting annoyed
   }
 
   function hintHover(){
@@ -336,14 +349,14 @@ fetch('http://localhost:3000/movieData')
   function fillinTheBlanks(){
     //fillin check 1
     if(dbug){
-      console.log(`fillintheblank()`)
+      console.log(`fillintheblanks()`)
     }
 
     gameField.innerHTML= ``;
     rdmA=Math.floor(Math.random() * 3) + 1;
     //fillin check 2
     if(dbug){
-      console.log(`fillintheblank()2`)
+      console.log(`fillintheblanks()2`)
     }
     //takes random name out of holder so repeats dont happen
     takeNameOut(crntMovie.name);
@@ -391,7 +404,7 @@ fetch('http://localhost:3000/movieData')
       displayResult("Correct!", false);
     }
     else {
-      displayMovie("Incorrect!", true);
+      displayResult("Incorrect!", true);
     }
   }
 
@@ -400,7 +413,7 @@ fetch('http://localhost:3000/movieData')
     if(dbug){
       console.log(`displayResult()`)
     }
-
+    Rslts.style.visibility="visible"
     Rslts.textContent=msg;
     if(isError){
       getWrong=getWrong+1
@@ -410,6 +423,7 @@ fetch('http://localhost:3000/movieData')
     }
     else{
       getRight=getRight+1
+      score=score+points;
       Rslts.style.color="green";
       gameField.style.display="none";
       btnNext.style.visibility="visible";
@@ -422,6 +436,42 @@ fetch('http://localhost:3000/movieData')
     dirHint.style.visibility="visible";
   }
 
+  function nextMovie(){
+    gameField.style.display="block";
+    Rslts.style.visibility="hidden";
+    btnNext.style.visibility="hidden"
+    
+    if(choiceGame == "false"){
+      document.getElementById("guessInput").value=null
+    }
+
+    loadMovie();
+  }
+
+function submitAnswer(){
+  //check submitanswer
+  if(dbug){
+    console.log(`submitAnswer()`)
+  }
+  subEnter = false;
+  gameField.style.display="none";
+
+  let AnswerPool = crntMovie.answerPool;
+  let getItRight = false;
+
+  AnswerPool.forEach(answerPool =>{
+    if(guessInput.value.toLowerCase() == answerPool.toLowerCase()){
+      getItRight = true;
+    }
+  })
+
+  if(getItRight==true){
+    displayResult("Congratulations, You guessed it correct!", false);
+  }
+  else{
+    displayResult("Sorry that's incorrect, try again.", true);
+  }
+}
 
   document.addEventListener(`keypress`, (event) =>{
     let keyCode=event.key;
