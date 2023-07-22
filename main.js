@@ -191,7 +191,7 @@ fetch('http://localhost:3000/movieData')
         guessInput = document.getElementById(`guessInput`)
         btnField.innerHTML= `
         <button id="hintButton" onclick="showHint()">Quote Hint</button>
-        <button id="nextButton" onclick="nextMovie()" style="visibility:hidden;">Next Movie"</button>`
+        <button id="nextButton" onclick="nextMovie()" style="visibility:hidden;">Next Movie</button>`
         btnNext=document.getElementById(`nextButton`);
       break;
     

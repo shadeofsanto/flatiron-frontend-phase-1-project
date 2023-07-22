@@ -94,11 +94,9 @@ body {
     font-size: 20px;
     margin: 4px 2px;
     border-radius: 5px;
+    cursor: crosshair;
   }
-  
-  .btn :hover{
-    cursor: pointer;
-  }
+
 
   #imageContainer {
     width: 500px;
