@@ -422,6 +422,7 @@ fetch('http://localhost:3000/movieData')
     dirHint.style.visibility="visible";
   }
 
+
   document.addEventListener(`keypress`, (event) =>{
     let keyCode=event.key;
     if(keyCode=="enter" || keyCode=="Enter" && subEnter){

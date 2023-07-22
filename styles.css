@@ -96,7 +96,7 @@ body {
     border-radius: 5px;
   }
   
-  .btn hover{
+  .btn :hover{
     cursor: pointer;
   }
 
