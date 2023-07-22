@@ -11,6 +11,6 @@ Project Requirements
 6-[x] mobile friendly
 7-[x] render data in html DOM
 8-[] video walkthrough of your app, no longer than 3 minutes
-9-[] blog post about this phase of curriculum
-10-[] well written readme file
+9-[x] blog post about this phase of curriculum
+10-[x] well written readme file
 
