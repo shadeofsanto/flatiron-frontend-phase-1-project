@@ -10,7 +10,7 @@
   z-index: 100;
 }
 
-#popup {
+#popUp {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -28,23 +28,23 @@
   cursor: pointer;
 }
 
-.popupcontent {
+.popUpContent {
   padding: 10px;
 }
 
-#game-play{
+#gamePlay{
   height: 44px;
   border: none;
   overflow: hidden;
   background-color: #000;
 }
-#game-play::-moz-focus-inner {
+#gamePlay::-moz-focus-inner {
   border: 0;
 }
-#game-play:focus {
+#gamePlay:focus {
   outline: none;
 }
-#game-play option{
+#gamePlay option{
   width: 150px;
   font-size: 1.2em;
   padding: 10px 0;
@@ -72,14 +72,14 @@ body {
     color: gold;
   }
   
-  #filmstrip-header,
-  #filmstrip-footer {
+  #filmstripHeader,
+  #filmstripFooter {
     height: 150px;
     background-repeat: repeat-x;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1rTOFWnFcj4u-LPDJabk7Vw4n9bM_GStIxXEz4im1e6opUw1y1CPhKtQIM2viK4ehZVU&usqp=CAU');
   }
   
-  #game-container {
+  #gameContainer {
     margin-top: 20px;
   }
 
@@ -96,7 +96,7 @@ body {
     border-radius: 5px;
   }
   
-  #image-container {
+  #imageContainer {
     width: 500px;
     height: 400px;
     margin: 0 auto;
@@ -104,7 +104,7 @@ body {
     overflow: hidden;
   }
   
-  #movie-image {
+  #movieImage {
     display: none;
     width: 100%;
     height: 100%;
@@ -115,7 +115,7 @@ body {
     font-style: italic;
   }
   
-  #guess-input {
+  #guessInput {
     margin-top: 10px;
     padding: 5px;
   }
@@ -151,7 +151,7 @@ body {
     font-weight: bold;
   }
   
-  #hint-button {
+  #hintButton {
     background-color: gold;
     border: none;
     color: rgb(0, 0, 0);
@@ -164,12 +164,12 @@ body {
     border-radius: 20px;
   }
   
-  #hint-text {
+  #hintText {
     margin-top: 10px;
     font-style: italic;
   }
   
-  #next-button {
+  #nextButton {
     background-color: gold;
     border: none;
     color: rgb(0, 0, 0);

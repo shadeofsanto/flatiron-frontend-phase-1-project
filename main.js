@@ -3,9 +3,9 @@ let movieData = [];
 let rdmNum;
 let movieId;
 let dbug = true;
-let Endgame = 0;
+let endGame = 0;
 let points = 0;
-let popupmesg = "";
+let popUpMesg = "";
 let choiceGame;
 let lvl = 1;
 let hint;
@@ -19,24 +19,24 @@ let score=0;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
-const ansrKey = document.getElementById("answer-key");
+const ansrKey = document.getElementById("answerKey");
 const setUP = document.getElementById("SetUpPage");
-const gameCon = document.getElementById("game-container");
-const movImg = document.getElementById("movie-image");
-const hitTxt = document.getElementById("hint-text");
+const gameCon = document.getElementById("gameContainer");
+const movImg = document.getElementById("movieImage");
+const hitTxt = document.getElementById("hintText");
 const Rslts = document.getElementById("result");
-const gameField = document.getElementById("GameFeild");
-const btnField = document.getElementById("BtnFeild");
+const gameField = document.getElementById("gameField");
+const btnField = document.getElementById("btnField");
 const closePopup = document.getElementById("popUpClose");
 const overlay = document.getElementById("overlay");
-const popUP = document.getElementById("popup");
-const popupContent = document.getElementById("popupcontent");
+const popUP = document.getElementById("popUp");
+const popUpContent = document.getElementById("popUpContent");
 
-//!!!DEBUG!!! data line(s) go here
-  console.log(`-----At fetch db-----` + '\n' + " ");
-//END debug
+//Check 1
+  console.log(`At fetch db`);
+//End check 1
 
-// Fetch movie data from db.json
+//Fetching movie data from db.json
 console.log("Start fetch");
 fetch('http://localhost:3000/movieData')
   .then(response => response.json())
@@ -50,52 +50,50 @@ fetch('http://localhost:3000/movieData')
   });
 
   function HowManyTime(){
-    //!!!!DEBUG!!!!
+    //check 2
         console.log(`-----At HowManyTime()-----` + '\n' + " ");
-      //END DEBUG
+    //END check 2
 
-      //Making the setup areia visible while hiding the game area
+      //Making the setup area visible while hiding the game area
       gameCon.style.visibility = "hidden";
       setUP.style.visibility = "visible";
 
-      //creating an input feild with button so players can input how many rounds they want to play
+      //creating an input field with button so players can input how many rounds they want to play
       setUP.innerHTML = `
       <h1>How many rounds do you wana play?</h1> 
       <br>
       <p>Min is 1 and max is ${movieData.length}!</p>
-      <input type="text" id="amount-of-rounds" placeholder="1 - ${movieData.length}">
+      <input type="text" id="amountOfRounds" placeholder="1 - ${movieData.length}">
       <button id="roundbtn" class = "btn" onclick = "checkRoundNum()">Enter</button>
       `
   }
 
   function checkRoundNum() {
-    //!!!!DEBUG!!!!
+    //check 3 with new dbug event to stop people from seeing answers in console window
     if (dbug){
-    console.log(`-----At checkRoundNum()-----` + '\n' + 
-    `I saw that input "amount-of-rounds" is sending ${document.getElementById("amount-of-rounds").value}`);
+    console.log(`At checkRoundNum()` + '\n' + 
+    `I saw that input "amountOfRounds" is sending ${document.getElementById("amountOfRounds").value}`);
     }
-    //END DEBUG
+    //END check 3
 
-    Endgame = document.getElementById("amount-of-rounds").value;
+    endGame = document.getElementById("amountOfRounds").value;
 
-    if (isNaN(Endgame)) {
-      popupmesg = `
-      <h1>${Endgame} is <i>NOT</i> a number!</h1> 
+    if (isNaN(endGame)) {
+      popUpMesg = `
+      <h1>${endGame} is <i>NOT</i> a number!</h1> 
       <p>Please enter a number 1 to ${movieData.length}</p>
       <br>
-      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>
-      `
+      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>`
       OpenPopup(false)
       return;
     }
 
-    else if (Endgame<1 || Endgame>movieData.length) {
-      popupmesg = `
-      <h1>${Endgame} is <i>NOT</i> a valid number!</h1>
+    else if (endGame<1 || endGame>movieData.length) {
+      popUpMesg = `
+      <h1>${endGame} is <i>NOT</i> a valid number!</h1>
       <p>Please enter a number 1 to ${movieData.length}</p>
       <br>
-      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>
-      `
+      <button id="roundbtn" class = "btn" onclick = "ClosePopup(), HowManyTime()">Retry</button>`
       OpenPopup(false)
       return;
     }
@@ -105,46 +103,43 @@ fetch('http://localhost:3000/movieData')
     }
 
   }
-1
+  
   function Choice(){
-    //!!!!DEBUG!!!!
+    //check 4
     if (dbug){
-      console.log(`-----At Choice()-----` + '\n' + " ");
+      console.log(`At Choice()`);
     }
-    //END DEBUG
+    //END check 4
 
-    points = 100/Endgame;
-
+    points = 100/endGame;
+    //check 5
     if (dbug){
-      console.log(`Questions are worth ${points} each.  There will be ${Endgame} question(s).`);
+      console.log(`Questions are worth ${points} each.  There will be ${endGame} question(s).`);
     }
-
+    //END check 5
     setUP.innerHTML = `
-    <p>Questions are worth ${Math.round(points)} each.  There will be ${Endgame} question(s).</p>
+    <p>Questions are worth ${Math.round(points)} each.  There will be ${endGame} question(s).</p>
     <h1>Choose your Style</h1>
-    <select id="game-play" multiple>
+    <select id="gamePlay" multiple>
     <option value = true selected>Multiple Choice</option>
     <option value = false>Type it in</option>
     </select>
     <br>
-    <button id="roundbtn" class="btn" onclick="Diff()">Next</button>
-    `
-    //END DEBUG
-
+    <button id="roundbtn" class="btn" onclick="Diff()">Next</button>`
   }
 
   function Diff() {
-    //!!!!DEBUG!!!!
+    //check 5
     if (dbug){
-      console.log(`-----At Diff()-----` + '\n' + " ");
+      console.log(`At Diff()`);
     }
-    //END DEBUG
+    //END check 5
 
-    choice = document.getElementById("game-play").value
+    choice = document.getElementById("gamePlay").value
 
     setUP.innerHTML = `
     <h1>Choose your Difficulty</h1>
-    <select id="game-play" multiple>
+    <select id="gamePlay" multiple>
     <option value=1 selected>Easy</option>
     <option value=2>Medium</option>
     <option value=3>Hard</option>
@@ -156,13 +151,13 @@ fetch('http://localhost:3000/movieData')
   }
 
   function SetUp (){
-    //!!!DEBUG!!! data line(s) go here
+    //check 6
     if (dbug){
       console.log(`-----At SetUp()-----` + '\n' + " ");
     }
-    //END debug
+    //END check 6
 
-    lvl = document.getElementById("game-play").value
+    lvl = document.getElementById("gamePlay").value
 
     //Just making things visible or not.
     dirHint.style.visibility = "visible";
@@ -175,29 +170,27 @@ fetch('http://localhost:3000/movieData')
     gameField.style.visibility = "visible";
     btnField.style.visibility = "visible";
 
+    //played around with switch statement to show/hide buttons
     switch(choiceGame) {
       case choiceGame:
         btnField.innerHTML=`
-        <button id="hint-button" onclick = "showHint()">Quote Hint</button>
-        <button id="next-button" onclick = "nextMovie()"style="visibility:hidden;">Next Movie</button> 
-        `;
+        <button id="hintButton" onclick = "showHint()">Quote Hint</button>
+        <button id="nextButton" onclick = "nextMovie()"style="visibility:hidden;">Next Movie</button> `;
       break;
 
       case !choiceGame:
         gameField.innerHTML=`
-        <input type="text" id="guess-input" placeholder="Enter Your Guess">
-        button id="submit-button onclick="submitAnswer()">Submit</button>
-        `;
+        <input type="text" id="guessInput" placeholder="Enter Your Guess">
+        button id="submit-button onclick="submitAnswer()">Submit</button>`;
         btnSub = document.getElementById(`submit-button`);
         btnField.innerHTML= `
-        <button id="hint-button" onclick="showHint()">Quote Hint</button>
-        <button id="next-button" onclick="nextMovie()" style="visibility:hidden;">Next Movie"</button>
-        `
-        btnNext=document.getElementById(`next-button`);
+        <button id="hintButton" onclick="showHint()">Quote Hint</button>
+        <button id="nextButton" onclick="nextMovie()" style="visibility:hidden;">Next Movie"</button>`
+        btnNext=document.getElementById(`nextButton`);
       break;
     
       default:
-        popupmesg=`
+        popUpMesg=`
         <h1>Something has gone wrong!</h1>
         <br>
         <buttton class="btn" onclick="location.reload()">Refresh</button>
@@ -229,7 +222,7 @@ fetch('http://localhost:3000/movieData')
       break;
 
       default:
-        popupmesg=`
+        popUpMesg=`
         <h1>Something has gone wrong!</h1>
         <br>
         <button onclick="location.reload()">Refresh</button>
@@ -240,16 +233,16 @@ fetch('http://localhost:3000/movieData')
     }
   }
 
-  //here we are going to get the data for our movie
+  //This retrieves the data for the movie
   function loadMovie (){
-    //!!!DEBUG!!! data line(s) go here
+    //check 7
     if (dbug){
-      console.log(`-----At loadMovie()-----` + '\n' + " ");
+      console.log(`At loadMovie()`);
     }
-    //END debug
+    //END check 7
 
     holder=[];
-    btnHint=document.getElementById("hint-button");
+    btnHint=document.getElementById("hintButton");
 
     movieData.forEach(crntMov => {
       holder.push(crntMov.name)
@@ -263,8 +256,8 @@ fetch('http://localhost:3000/movieData')
       displayMovie()
     }  
 
-    else if(movieNum.length >= Endgame){
-      popupmesg = `
+    else if(movieNum.length >= endGame){
+      popUpMesg = `
       <h1>You have reached the end!</h1>
       <p>You got ${getRight} correct and ${getWrong} incorrect.</p>
       <br>
@@ -285,13 +278,13 @@ fetch('http://localhost:3000/movieData')
     }
   }
 
-  //This function will show all movie data
+  //function to show the movie image
   function displayMovie (){
-    //!!!DEBUG!!! data line(s) go here
+    //check 8
     if (dbug){
-      console.log(`-----At displayMovie()-----` + '\n' + " ");
+      console.log(`At displayMovie()`);
     }
-    //END debug
+    //END check 8
 
     if (!hint){
       btnHint.style.visibility="hidden";
@@ -300,7 +293,6 @@ fetch('http://localhost:3000/movieData')
       btnHint.style.visibility="visable";
     }
 
-    //Displaying movie image
     movImg.src = movieData[rdmNum].imageUrl
     movImg.alt = "Movie Image";
     movImg.style.display = "block";
@@ -314,16 +306,23 @@ fetch('http://localhost:3000/movieData')
       subEnter=false;
       fillinTheBlanks();
     }
+    //event listener to make the enter key continue the game...mostly because I found myself hitting enter to try to continue the game and was getting annoyed
+    // document.addEventListener(`keypress`, (event) =>{
+    //   let keyCode=event.key;
+    //   if(keyCode=="enter" || keyCode=="Enter" && subEnter){
+    //     btnSub.click();
+    //   }
+    // });
+  }
 
-    document.addEventListener(`keypress`, (event) =>{
+document.addEventListener(`keypress`, (event) =>{
       let keyCode=event.key;
       if(keyCode=="enter" || keyCode=="Enter" && subEnter){
         btnSub.click();
       }
     });
-  }
 
-//Hitting "/" on keyboard will turn on/off debug
+//Hitting "/" on keyboard will turn on/off certain console msgs
 document.addEventListener('keypress', (event) =>{
 let keyCode = event.key;
       
@@ -353,7 +352,7 @@ function OpenPopup (xpopup){
     closePopup.style.visibility = "hidden";
   }
 
-  popupContent.innerHTML = popupmesg;
+  popUpContent.innerHTML = popUpMesg;
 
 }
 
@@ -362,4 +361,4 @@ function ClosePopup (){
 
 }
 
-console.log(`!!!dbug is ${dbug} by default!!!`);
+console.log(`dbug is ${dbug} by default`);
