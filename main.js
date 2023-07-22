@@ -1,8 +1,8 @@
-//changing vars go here
+//let vars go here
 let movieData = [];
 let rdmNum;
 let movieId;
-let dbug = true; //Default on(true) or off(false) for debug option
+let dbug = true;
 let Endgame = 0;
 let points = 0;
 let popupmesg = "";
@@ -10,6 +10,12 @@ let choiceGame;
 let lvl = 1;
 let hint;
 let hintR;
+let holder=[];
+let btnHint;
+let movieNum=[];
+let getRight=0;
+let getWrong=0;
+let score=0;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -242,27 +248,41 @@ fetch('http://localhost:3000/movieData')
     }
     //END debug
 
-    rdmNum = Math.floor(Math.random() * movieData.length+1); //Getting a random number
+    holder=[];
+    btnHint=document.getElementById("hint-button");
 
-          //!!!!DEBUG!!!!
-          if (dbug){
-            console.log(`rdm num is ${rdmNum}.`);
-          }
-          //END DEBUG
-
-    // matching movieData.id to random number
     movieData.forEach(crntMov => {
-      if(crntMov.id == rdmNum){
-        movieId = crntMov.id-1;
-
-      //!!!!DEBUG!!!!
-      if (dbug){
-        console.log(`Picked ${crntMov.name} with ID of ${crntMov.id}.`);
-      }
-      //END DEBUG
-      }
+      holder.push(crntMov.name)
     });
-    displayMovie();
+
+    rdmNum = Math.floor(Math.random() * movieData.length);
+
+    if(movieNum.length<1){
+      subEnter=true;
+      movieNum.push(movieData[rdmNum].id)
+      displayMovie()
+    }  
+
+    else if(movieNum.length >= Endgame){
+      popupmesg = `
+      <h1>You have reached the end!</h1>
+      <p>You got ${getRight} correct and ${getWrong} incorrect.</p>
+      <br>
+      <p>Your overall score is ${Math.round(score)}</p>
+      <button id="roundbtn" class = "btn" onclick = "location.reload()">Play Again</button>
+      `
+      OpenPopup(false)
+    }
+
+    else if(repeatCheck()!=true){
+      subEnter = true;
+      movieNum.push(movieData[rdmNum].id)
+      displayMovie()
+    }  
+
+    else{
+      loadMovie();
+    }
   }
 
   //This function will show all movie data
@@ -273,10 +293,34 @@ fetch('http://localhost:3000/movieData')
     }
     //END debug
 
+    if (!hint){
+      btnHint.style.visibility="hidden";
+    }
+    else{
+      btnHint.style.visibility="visable";
+    }
+
     //Displaying movie image
-    movImg.src = movieData[movieId].imageUrl
+    movImg.src = movieData[rdmNum].imageUrl
     movImg.alt = "Movie Image";
     movImg.style.display = "block";
+
+    dirHint.innerText=`Director: ${movieData[rdmNum].directorHint}`
+    hitTxt.innerText=movieData[rdmNum].hintQuote;
+
+    ansrKey.style.display="block";
+
+    if(choice){
+      subEnter=false;
+      fillinTheBlanks();
+    }
+
+    document.addEventListener(`keypress`, (event) =>{
+      let keyCode=event.key;
+      if(keyCode=="enter" || keyCode=="Enter" && subEnter){
+        btnSub.click();
+      }
+    });
   }
 
 //Hitting "/" on keyboard will turn on/off debug
