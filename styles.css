@@ -96,6 +96,10 @@ body {
     border-radius: 5px;
   }
   
+  .btn hover{
+    cursor: pointer;
+  }
+
   #imageContainer {
     width: 500px;
     height: 400px;
@@ -134,9 +138,9 @@ body {
   }
   
   #submit-button {
-    background-color: #037e0e;
+    background-color: gold;
     border: none;
-    color: white;
+    color: black;
     padding: 10px;
     text-align: center;
     text-decoration: none;

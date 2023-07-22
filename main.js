@@ -16,6 +16,11 @@ let movieNum=[];
 let getRight=0;
 let getWrong=0;
 let score=0;
+let choice;
+let rdmA;
+let crntMovie=[];
+let rdmB;
+let btnNext;
 
 //Const vars go here
 const dirHint = document.getElementById("directHint");
@@ -51,12 +56,12 @@ fetch('http://localhost:3000/movieData')
 
   function HowManyTime(){
     //check 2
-        console.log(`-----At HowManyTime()-----` + '\n' + " ");
+    console.log(`At HowManyTime()`);
     //END check 2
 
       //Making the setup area visible while hiding the game area
-      gameCon.style.visibility = "hidden";
-      setUP.style.visibility = "visible";
+      gameCon.style.display = "none";
+      setUP.style.display = "block";
 
       //creating an input field with button so players can input how many rounds they want to play
       setUP.innerHTML = `
@@ -135,7 +140,7 @@ fetch('http://localhost:3000/movieData')
     }
     //END check 5
 
-    choice = document.getElementById("gamePlay").value
+    choiceGame = document.getElementById("gamePlay").value
 
     setUP.innerHTML = `
     <h1>Choose your Difficulty</h1>
@@ -159,29 +164,31 @@ fetch('http://localhost:3000/movieData')
 
     lvl = document.getElementById("gamePlay").value
 
+    // choiceGame = confirm(`Are you ready?`)
+
     //Just making things visible or not.
     dirHint.style.visibility = "visible";
     ansrKey.style.visibility = "visible";
     setUP.style.display = "none";
-    gameCon.style.visibility = "visible";
+    gameCon.style.display = "block";
     movImg.style.visibility = "visible";
     hitTxt.style.visibility = "visible";
     Rslts.style.visibility = "hidden";
     gameField.style.visibility = "visible";
     btnField.style.visibility = "visible";
 
-    //played around with switch statement to show/hide buttons
     switch(choiceGame) {
-      case choiceGame:
+      case "true":
         btnField.innerHTML=`
         <button id="hintButton" onclick = "showHint()">Quote Hint</button>
         <button id="nextButton" onclick = "nextMovie()"style="visibility:hidden;">Next Movie</button> `;
+        btnNext=document.getElementById(`nextButton`);
       break;
 
-      case !choiceGame:
+      case "false":
         gameField.innerHTML=`
         <input type="text" id="guessInput" placeholder="Enter Your Guess">
-        button id="submit-button onclick="submitAnswer()">Submit</button>`;
+        <button id="submit-button" class="btn" onclick="submitAnswer()">Submit</button>`;
         btnSub = document.getElementById(`submit-button`);
         btnField.innerHTML= `
         <button id="hintButton" onclick="showHint()">Quote Hint</button>
@@ -191,13 +198,12 @@ fetch('http://localhost:3000/movieData')
     
       default:
         popUpMesg=`
-        <h1>Something has gone wrong!</h1>
+        <h1>Something has gone wrong! 3</h1>
         <br>
         <buttton class="btn" onclick="location.reload()">Refresh</button>
         `
         OpenPopup(false);
       break;
-
     }
 
     switch (lvl){
@@ -250,6 +256,8 @@ fetch('http://localhost:3000/movieData')
 
     rdmNum = Math.floor(Math.random() * movieData.length);
 
+    crntMovie=movieData[rdmNum];
+
     if(movieNum.length<1){
       subEnter=true;
       movieNum.push(movieData[rdmNum].id)
@@ -293,6 +301,14 @@ fetch('http://localhost:3000/movieData')
       btnHint.style.visibility="visable";
     }
 
+    if(!hintR){
+      hitTxt.style.visibility="hidden";
+      dirHint.style.visibility="hidden";
+    }
+
+    btnHint.addEventListener("mouseover", hintHover);
+    btnHint.addEventListener("mouseout", hintOff);
+
     movImg.src = movieData[rdmNum].imageUrl
     movImg.alt = "Movie Image";
     movImg.style.display = "block";
@@ -302,26 +318,116 @@ fetch('http://localhost:3000/movieData')
 
     ansrKey.style.display="block";
 
-    if(choice){
+    if(choice = "true"){
       subEnter=false;
       fillinTheBlanks();
     }
     //event listener to make the enter key continue the game...mostly because I found myself hitting enter to try to continue the game and was getting annoyed
-    // document.addEventListener(`keypress`, (event) =>{
-    //   let keyCode=event.key;
-    //   if(keyCode=="enter" || keyCode=="Enter" && subEnter){
-    //     btnSub.click();
-    //   }
-    // });
   }
 
-document.addEventListener(`keypress`, (event) =>{
-      let keyCode=event.key;
-      if(keyCode=="enter" || keyCode=="Enter" && subEnter){
-        btnSub.click();
-      }
-    });
+  function hintHover(){
+    btnHint.innerText="Are you sure?";
+  }
 
+  function hintOff(){
+    btnHint.innerText="Quote Hint";
+  }
+
+  function fillinTheBlanks(){
+    //fillin check 1
+    if(dbug){
+      console.log(`fillintheblank()`)
+    }
+
+    gameField.innerHTML= ``;
+    rdmA=Math.floor(Math.random() * 3) + 1;
+    //fillin check 2
+    if(dbug){
+      console.log(`fillintheblank()2`)
+    }
+    //takes random name out of holder so repeats dont happen
+    takeNameOut(crntMovie.name);
+
+    for(i=1; i<4; i++){
+      if(i==rdmA){
+        gameField.innerHTML +=`
+        <button id="${i}" class="btn" onclick="mChoiceCheck(${i})">${crntMovie.name}</button>`
+      }
+      else{
+        gameField.innerHTML += `
+        <button id="${i}" class="btn" onclick="mChoiceCheck(${i})">${pickMovie()}</button>`
+      }
+    }
+  }
+
+  function takeNameOut(mName){
+    //takeoutname check
+    if(dbug){
+      console.log(`takeNameOut()`)
+    }
+
+    for(k=0; k<holder.length; k++){
+      if(mName.toLowerCase()==holder[k].toLowerCase()){
+        holder.splice(k, 1);
+      }
+    }
+  }
+
+  function pickMovie(){
+    //pickmovie check
+    if(dbug){
+      console.log(`pickMovie()`)
+    }
+
+    let rdmB=Math.floor(Math.random() * holder.length);
+    
+    let returnName=holder[rdmB]
+    holder.splice(rdmB, 1);
+    return returnName;
+  }
+
+  function mChoiceCheck(i){
+    if(i==rdmA){
+      displayResult("Correct!", false);
+    }
+    else {
+      displayMovie("Incorrect!", true);
+    }
+  }
+
+  function displayResult(msg, isError){
+    //displayResults check
+    if(dbug){
+      console.log(`displayResult()`)
+    }
+
+    Rslts.textContent=msg;
+    if(isError){
+      getWrong=getWrong+1
+      Rslts.style.color="red";
+      gameField.style.display="none";
+      btnNext.style.visibility="visible";
+    }
+    else{
+      getRight=getRight+1
+      Rslts.style.color="green";
+      gameField.style.display="none";
+      btnNext.style.visibility="visible";
+    }
+  }
+
+  function showHint(){
+    btnHint.style.visibility="hidden";
+    hitTxt.style.visibility="visible";
+    dirHint.style.visibility="visible";
+  }
+
+  document.addEventListener(`keypress`, (event) =>{
+    let keyCode=event.key;
+    if(keyCode=="enter" || keyCode=="Enter" && subEnter){
+      btnSub.click();
+    }
+  });
 //Hitting "/" on keyboard will turn on/off certain console msgs
 document.addEventListener('keypress', (event) =>{
 let keyCode = event.key;
