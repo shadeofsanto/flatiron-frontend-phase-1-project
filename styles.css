@@ -125,9 +125,9 @@ body {
   }
 
   .btnGuess{
-    background-color: #037e0e;
+    background-color: gold;
     border: none;
-    color: white;
+    color: black;
     padding: 10px;
     text-align: center;
     text-decoration: none;
