@@ -42,7 +42,9 @@ const popUpContent = document.getElementById("popUpContent");
 //End check 1
 
 //Fetching movie data from db.json
+//check fetch start
 console.log("Start fetch");
+//fetch end
 fetch('http://localhost:3000/movieData')
   .then(response => response.json())
   .then(data => {
@@ -55,9 +57,9 @@ fetch('http://localhost:3000/movieData')
   });
 
   function HowManyTime(){
-    //check 2
+    //check howmanytime
     console.log(`At HowManyTime()`);
-    //END check 2
+    //END check
 
       //Making the setup area visible while hiding the game area
       gameCon.style.display = "none";
@@ -74,12 +76,12 @@ fetch('http://localhost:3000/movieData')
   }
 
   function checkRoundNum() {
-    //check 3 with new dbug event to stop people from seeing answers in console window
+    //check checkroundnum with new dbug event to stop people from seeing answers in console window
     if (dbug){
     console.log(`At checkRoundNum()` + '\n' + 
     `I saw that input "amountOfRounds" is sending ${document.getElementById("amountOfRounds").value}`);
     }
-    //END check 3
+    //END check
 
     endGame = document.getElementById("amountOfRounds").value;
 
@@ -110,18 +112,18 @@ fetch('http://localhost:3000/movieData')
   }
   
   function Choice(){
-    //check 4
+    //check choice
     if (dbug){
       console.log(`At Choice()`);
     }
-    //END check 4
+    //END
 
     points = 100/endGame;
-    //check 5
+    //check points
     if (dbug){
       console.log(`Questions are worth ${points} each.  There will be ${endGame} question(s).`);
     }
-    //END check 5
+    //END check
     setUP.innerHTML = `
     <p>Questions are worth ${Math.round(points)} each.  There will be ${endGame} question(s).</p>
     <h1>Choose your Style</h1>
@@ -134,11 +136,11 @@ fetch('http://localhost:3000/movieData')
   }
 
   function Diff() {
-    //check 5
+    //check diff
     if (dbug){
       console.log(`At Diff()`);
     }
-    //END check 5
+    //END check
 
     choiceGame = document.getElementById("gamePlay").value
 
@@ -156,11 +158,11 @@ fetch('http://localhost:3000/movieData')
   }
 
   function SetUp (){
-    //check 6
+    //check setup
     if (dbug){
       console.log(`-----At SetUp()-----` + '\n' + " ");
     }
-    //END check 6
+    //END check
 
     lvl = document.getElementById("gamePlay").value
 
@@ -178,7 +180,7 @@ fetch('http://localhost:3000/movieData')
     switch(choiceGame) {
       case "true":
         btnField.innerHTML=`
-        <button id="hintButton" onclick = "showHint()">Quote Hint</button>
+        <button id="hintButton" onclick = "showHint()">Hint</button>
         <button id="nextButton" onclick = "nextMovie()"style="visibility:hidden;">Next Movie</button> `;
         btnNext=document.getElementById(`nextButton`);
       break;
@@ -190,7 +192,7 @@ fetch('http://localhost:3000/movieData')
         btnSub = document.getElementById(`submit-button`);
         guessInput = document.getElementById(`guessInput`)
         btnField.innerHTML= `
-        <button id="hintButton" onclick="showHint()">Quote Hint</button>
+        <button id="hintButton" onclick="showHint()">Hint</button>
         <button id="nextButton" onclick="nextMovie()" style="visibility:hidden;">Next Movie</button>`
         btnNext=document.getElementById(`nextButton`);
       break;
@@ -243,7 +245,7 @@ fetch('http://localhost:3000/movieData')
     if (dbug){
       console.log(`At repeatcheck()`);
     }
-    //END repeat
+    //END check
     for (i=0; i<movieNum.length; i++){
       if (movieNum[i] == crntMovie.id){
         return true;
@@ -254,11 +256,11 @@ fetch('http://localhost:3000/movieData')
 
   //This retrieves the data for the movie
   function loadMovie (){
-    //check 7
+    //check loadmovie
     if (dbug){
       console.log(`At loadMovie()`);
     }
-    //END check 7
+    //END check
 
     holder=[];
     btnHint=document.getElementById("hintButton");
@@ -301,11 +303,11 @@ fetch('http://localhost:3000/movieData')
 
   //function to show the movie image
   function displayMovie (){
-    //check 8
+    //check displaymovie
     if (dbug){
       console.log(`At displayMovie()`);
     }
-    //END check 8
+    //END check
 
     if (!hint){
       btnHint.style.visibility="hidden";
@@ -332,7 +334,9 @@ fetch('http://localhost:3000/movieData')
     ansrKey.style.display="block";
     
     if(choiceGame == "true"){
+      //check choicegame
       console.log("testblhjf'ggn ")
+      //END check
       subEnter=false;
       fillinTheBlanks();
     }
@@ -343,7 +347,7 @@ fetch('http://localhost:3000/movieData')
   }
 
   function hintOff(){
-    btnHint.innerText="Quote Hint";
+    btnHint.innerText="Hint";
   }
 
   function fillinTheBlanks(){
@@ -351,13 +355,14 @@ fetch('http://localhost:3000/movieData')
     if(dbug){
       console.log(`fillintheblanks()`)
     }
-
+    //END check
     gameField.innerHTML= ``;
     rdmA=Math.floor(Math.random() * 3) + 1;
     //fillin check 2
     if(dbug){
       console.log(`fillintheblanks()2`)
     }
+    //END check
     //takes random name out of holder so repeats dont happen
     takeNameOut(crntMovie.name);
 
@@ -376,9 +381,10 @@ fetch('http://localhost:3000/movieData')
   function takeNameOut(mName){
     //takeoutname check
     if(dbug){
+      //check takenameout
       console.log(`takeNameOut()`)
     }
-
+    //END check
     for(k=0; k<holder.length; k++){
       if(mName.toLowerCase()==holder[k].toLowerCase()){
         holder.splice(k, 1);
@@ -391,7 +397,7 @@ fetch('http://localhost:3000/movieData')
     if(dbug){
       console.log(`pickMovie()`)
     }
-
+    //END check
     let rdmB=Math.floor(Math.random() * holder.length);
     
     let returnName=holder[rdmB]
@@ -413,6 +419,7 @@ fetch('http://localhost:3000/movieData')
     if(dbug){
       console.log(`displayResult()`)
     }
+    //END check
     Rslts.style.visibility="visible"
     Rslts.textContent=msg;
     if(isError){
@@ -453,6 +460,7 @@ function submitAnswer(){
   if(dbug){
     console.log(`submitAnswer()`)
   }
+  //END check
   subEnter = false;
   gameField.style.display="none";
 
@@ -479,7 +487,8 @@ function submitAnswer(){
       btnSub.click();
     }
   });
-//Hitting "/" on keyboard will turn on/off certain console msgs
+//Hitting "/" on keyboard will turn on/off certain console msgs - stops people from seeing being able to read the console log to see the answers
+//I did not think about it until now, but this is an obsolete eventlistener because I made it stop sending the answers in the console log itself, but I still thought this was cool so I am leaving it in.
 document.addEventListener('keypress', (event) =>{
 let keyCode = event.key;
       
