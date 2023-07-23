@@ -14,3 +14,19 @@ Project Requirements
 9-[x] blog post about this phase of curriculum
 10-[x] well written readme file
 
+//Hitting "/" on keyboard will turn on/off certain console msgs - stops people from seeing being able to read the console log to see the answers
+//I did not think about it until now, but this is an obsolete eventlistener because I made it stop sending the answers in the console log itself, but I still thought this was cool so I am leaving it in. - taking them out to reduce the needless lines of code but wanted this stored for future use on other projects I might make.
+// document.addEventListener('keypress', (event) =>{
+// let keyCode = event.key;
+      
+// if(keyCode == "/" || keyCode == "/"){
+//   if (dbug){
+//       dbug = false;
+//       console.log(`dbug = ${dbug}`);
+//     }
+//   else{
+//       dbug=true;
+//       console.log(`dbug = ${dbug}`);
+//     }
+//   }
+// });
